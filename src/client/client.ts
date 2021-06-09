@@ -5,9 +5,16 @@ const scene: THREE.Scene = new THREE.Scene()
 
 const camera: THREE.PerspectiveCamera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
 
-const renderer: THREE.WebGLRenderer = new THREE.WebGLRenderer()
-renderer.setSize(window.innerWidth, window.innerHeight)
-document.body.appendChild(renderer.domElement)
+const canvas = <HTMLCanvasElement>document.getElementById('c');
+/**
+ * Instead of append renderer to the DOM,
+ * we could target a DOM node and populate out the content
+ */
+const renderer: THREE.WebGLRenderer = new THREE.WebGLRenderer({ canvas })
+renderer.setSize(500, 500)
+// document.body.appendChild(renderer.domElement)
+
+
 
 const controls = new OrbitControls(camera, renderer.domElement)
 
